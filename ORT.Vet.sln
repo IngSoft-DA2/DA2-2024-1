@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORT.Vet.WebApi", "ORT.Vet.WebApi\ORT.Vet.WebApi.csproj", "{3969B5CF-8FAE-4FAD-899F-21FA743FAAA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3969B5CF-8FAE-4FAD-899F-21FA743FAAA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3969B5CF-8FAE-4FAD-899F-21FA743FAAA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3969B5CF-8FAE-4FAD-899F-21FA743FAAA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3969B5CF-8FAE-4FAD-899F-21FA743FAAA1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
