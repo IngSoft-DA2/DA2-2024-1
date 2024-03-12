@@ -2,8 +2,6 @@
 
 Repositorio con los ejemplos de clase
 
-------
-
 ## Profesores
 
 - Marco Fiorito
