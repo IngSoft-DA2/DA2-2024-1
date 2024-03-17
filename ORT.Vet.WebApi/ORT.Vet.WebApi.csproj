@@ -7,8 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\ORT.Vet.IBusinessLogic\ORT.Vet.IBusinessLogic.csproj" />
+        <ProjectReference Include="..\ORT.Vet.IBusinessLogic\ORT.Vet.Domain.csproj" />
+        <ProjectReference Include="..\ORT.Vet.Domain\ORT.Vet.Domain.csproj" />
+        <ProjectReference Include="..\ORT.Vet.ServicesFactory\ORT.Vet.ServicesFactory.csproj" />
     </ItemGroup>
 
 </Project>

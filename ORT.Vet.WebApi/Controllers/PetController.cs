@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using ORT.Vet.IBusinessLogic;
+using ORT.Vet.Domain;
 
-namespace ORT.Vet.WebApi.Controllers;
+namespace ORT.Vet.WebApi.Controllers
+{
 
 // 1. Postman GET http:localhost:5051/api/pets
 // 2. .NET mira la ruta (/api/pets) -> PetController
@@ -16,105 +19,57 @@ namespace ORT.Vet.WebApi.Controllers;
 // 2 - Cambiar PUT a PATCH
 // 3 - Agregarle al perro color de pelo y probar todos los endpoints
 
-[ApiController]
-[Route("api/pets")]
-public class PetController : ControllerBase
-{
-    public static List<Pet> _pets = new List<Pet>() { new Pet() { Id = 1, Name = "Jaime", Age = 12}};
-    
-    // GET api/pets
-    [HttpGet]
-    public IActionResult Index()
+    [ApiController]
+    [Route("api/pets")]
+    public class PetController : ControllerBase
     {
-        // 200
-        return Ok(_pets);
-    }
-    
-    
-    // GET api/pets/{id}
-    [HttpGet("{id}")]
-    public IActionResult Show([FromRoute] int id)
-    {
-        var pet = _pets.Find(p => p.Id == id);
+        private readonly IBusinessLogic<Pet> _petLogic;
 
-        if (pet != null)
+        public PetController(IBusinessLogic<Pet> petLogic)
         {
-            // 200
+            _petLogic = petLogic;
+        }
+
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return Ok(_petLogic.GetAll());
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Show(int id)
+        {
+            var pet = _petLogic.GetById(id);
+            if (pet != null) return Ok(pet);
+            return NotFound(new { Message = $"No se encontro el perro con id {id}" });
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] Pet newPet)
+        {
+            if (String.IsNullOrEmpty(newPet.Name))
+            {
+                return BadRequest(new { Message = "Falta el nombre :(" });
+            }
+
+            var createdPet = _petLogic.Create(newPet);
+            return Ok(createdPet);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody] Pet updatedPet)
+        {
+            var pet = _petLogic.Update(id, updatedPet);
+            if (pet == null) return NotFound(new { Message = "No encontre el perro" });
             return Ok(pet);
         }
-        else
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
-            // 404
-            return NotFound(new { Message = $"No se encontro el perro con id {id}"});
+            var success = _petLogic.Delete(id);
+            if (!success) return NotFound(new { Message = "No encontre el perro" });
+            return NoContent();
         }
     }
-    
-    // POST api/pets
-    [HttpPost]
-    // MODEL BINDING
-    public IActionResult Create([FromBody] Pet newPet)
-    {
-        if (String.IsNullOrEmpty(newPet.Name))
-        {
-            // 400
-            return BadRequest(new { Message = "Falta el nombre :(" });
-        }
-
-        newPet.Id = _pets.Count + 1;
-        _pets.Add(newPet);
-        
-        // 200
-        return Ok(newPet);
-    }
-    
-    // PUT api/pets/{id}
-    [HttpPut("{id}")]
-    public IActionResult Update([FromRoute] int id, [FromBody] Pet updatedPet)
-    {
-        var pet = _pets.Find(p => p.Id == id);
-        
-        if (pet == null)
-        {
-            // 404
-            return NotFound(new { Message = "No encontre el perro"});
-        }
-        
-        // Saco de la lista y agrego denuevo pero actualizo
-        // SOLO porque no estoy usando BD y la lista no tiene metodo update
-        var petToInsert = new Pet()
-        {
-            Id = pet.Id,
-            Name = updatedPet.Name,
-            Age = updatedPet.Age
-        };
-        _pets.Remove(pet);
-        _pets.Add(petToInsert);
-
-        return Ok(petToInsert);
-    }
-    
-    // DELETE api/pets/{id}
-    [HttpDelete("{id}")]
-    public IActionResult Delete([FromRoute] int id)
-    {
-        var pet = _pets.Find(p => p.Id == id);
-
-        if (pet == null)
-        {
-            // 404
-            return NotFound(new { Message = "No encontre el perro"});
-        }
-
-        _pets.Remove(pet);
-        
-        // 204
-        return NoContent();
-    }
-}
-
-public class Pet
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public int Age { get; set; }
 }
