@@ -4,9 +4,12 @@
     <ProjectReference Include="..\ORT.Vet.BusinessLogic\ORT.Vet.BusinessLogic.csproj" />
     <ProjectReference Include="..\ORT.Vet.IBusinessLogic\ORT.Vet.IBusinessLogic.csproj" />
     <ProjectReference Include="..\ORT.Vet.Domain\ORT.Vet.Domain.csproj" />
+    <ProjectReference Include="..\ORT.Vet.IDataAccess\ORT.Vet.IDataAccess.csproj" />
+    <ProjectReference Include="..\ORT.Vet.DataAccess\ORT.Vet.DataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
 

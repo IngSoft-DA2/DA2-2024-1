@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ORT.Vet.IBusinessLogic\ORT.Vet.IBusinessLogic.csproj" />
     <ProjectReference Include="..\ORT.Vet.Domain\ORT.Vet.Domain.csproj" />
+    <ProjectReference Include="..\ORT.Vet.IDataAccess\ORT.Vet.IDataAccess.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

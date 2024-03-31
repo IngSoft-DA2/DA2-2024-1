@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORT.Vet.IBusinessLogic", "O
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORT.Vet.ServicesFactory", "ORT.Vet.ServicesFactory\ORT.Vet.ServicesFactory.csproj", "{28D9CCC2-3522-4C4B-A667-5FA25612D573}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORT.Vet.DataAccess", "ORT.Vet.DataAccess\ORT.Vet.DataAccess.csproj", "{7ED0B8E2-8736-43EA-A924-1FAD01FF8192}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORT.Vet.IDataAccess", "ORT.Vet.IDataAccess\ORT.Vet.IDataAccess.csproj", "{ED77E019-B8F5-4359-9DBB-3788B25B10B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,5 +41,13 @@ Global
 		{28D9CCC2-3522-4C4B-A667-5FA25612D573}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28D9CCC2-3522-4C4B-A667-5FA25612D573}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28D9CCC2-3522-4C4B-A667-5FA25612D573}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ED0B8E2-8736-43EA-A924-1FAD01FF8192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ED0B8E2-8736-43EA-A924-1FAD01FF8192}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ED0B8E2-8736-43EA-A924-1FAD01FF8192}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ED0B8E2-8736-43EA-A924-1FAD01FF8192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED77E019-B8F5-4359-9DBB-3788B25B10B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED77E019-B8F5-4359-9DBB-3788B25B10B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED77E019-B8F5-4359-9DBB-3788B25B10B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED77E019-B8F5-4359-9DBB-3788B25B10B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
