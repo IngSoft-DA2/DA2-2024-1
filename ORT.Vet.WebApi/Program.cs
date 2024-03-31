@@ -1,3 +1,4 @@
+using ORT.Vet.Domain;
 using ORT.Vet.ServicesFactory;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,8 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var servicesFactory = new ServicesFactory();
-servicesFactory.RegisterServices(builder.Services);
+ServicesFactory.RegisterServices(builder.Services);
+ServicesFactory.RegisterDataAccess(builder.Services);
 
 var app = builder.Build();
 

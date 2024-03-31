@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using ORT.Vet.IBusinessLogic;
 using ORT.Vet.Domain;
+using ORT.Vet.BusinessLogic;
+using ORT.Vet.WebApi.DTOs.In;
+using ORT.Vet.WebApi.DTOs.Out;
 
 namespace ORT.Vet.WebApi.Controllers
 {
@@ -30,40 +33,47 @@ namespace ORT.Vet.WebApi.Controllers
             _petLogic = petLogic;
         }
 
+        //localhost:5051/api/pets
         [HttpGet]
         public IActionResult Index()
         {
             return Ok(_petLogic.GetAll());
         }
 
+        //localhost:5051/api/pets/{id}
         [HttpGet("{id}")]
         public IActionResult Show(int id)
         {
             var pet = _petLogic.GetById(id);
-            if (pet != null) return Ok(pet);
+            if (pet != null) return Ok(new PetDetailModel(pet));
             return NotFound(new { Message = $"No se encontro el perro con id {id}" });
         }
 
+        //localhost:5051/api/pets
         [HttpPost]
-        public IActionResult Create([FromBody] Pet newPet)
+        public IActionResult Create([FromBody] PetCreateModel newPet)
         {
+
             if (String.IsNullOrEmpty(newPet.Name))
             {
                 return BadRequest(new { Message = "Falta el nombre :(" });
             }
 
-            var createdPet = _petLogic.Create(newPet);
-            return Ok(createdPet);
+            var createdPet = _petLogic.Create(newPet.ToEntity());
+            return Ok(new PetDetailModel(createdPet));
         }
 
+        
+        // localhost:5051/api/pets/{id}
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] Pet updatedPet)
+        public IActionResult Update(int id, [FromBody] PetUpdateModel updatedPet)
         {
-            var pet = _petLogic.Update(id, updatedPet);
+            var pet = _petLogic.Update(id, updatedPet.ToEntity());
             if (pet == null) return NotFound(new { Message = "No encontre el perro" });
-            return Ok(pet);
+            return Ok(new PetDetailModel(pet));
         }
 
+        // localhost:5051/api/pets/{id}
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -71,5 +81,22 @@ namespace ORT.Vet.WebApi.Controllers
             if (!success) return NotFound(new { Message = "No encontre el perro" });
             return NoContent();
         }
+
+        // localhost:5051/api/pets?age=5
+        // [HttpDelete]
+        // public IActionResult DeleteAllWithAge([FromQuery] int age)
+        // {
+        //     var pets = _petLogic.GetAll();
+        //     var petsToDelete = pets.FindAll(p => p.Age == age);
+        //     if (petsToDelete.Count == 0) return NotFound(new { Message = "No encontre perros con esa edad" });
+        //     foreach (var pet in petsToDelete)
+        //     {
+        //         _petLogic.Delete(pet.Id);
+        //     }
+        //     return NoContent();
+        // }
+        // {
+        //     return NoContent();
+        // }
     }
 }
