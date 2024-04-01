@@ -37,7 +37,8 @@ namespace ORT.Vet.WebApi.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return Ok(_petLogic.GetAll());
+            var retrievedPets = _petLogic.GetAll();
+            return Ok(retrievedPets.Select(p => new PetDetailModel(p)).ToList());
         }
 
         //localhost:5051/api/pets/{id}

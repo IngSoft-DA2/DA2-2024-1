@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# 
+#
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORT.Vet.WebApi", "ORT.Vet.WebApi\ORT.Vet.WebApi.csproj", "{3969B5CF-8FAE-4FAD-899F-21FA743FAAA1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORT.Vet.BusinessLogic", "ORT.Vet.BusinessLogic\ORT.Vet.BusinessLogic.csproj", "{E2BE6227-BF69-4266-9616-3CD283AD1F8D}"
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORT.Vet.DataAccess", "ORT.Vet.DataAccess\ORT.Vet.DataAccess.csproj", "{7ED0B8E2-8736-43EA-A924-1FAD01FF8192}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORT.Vet.IDataAccess", "ORT.Vet.IDataAccess\ORT.Vet.IDataAccess.csproj", "{ED77E019-B8F5-4359-9DBB-3788B25B10B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORT.Vet.WebApi.Test", "ORT.Vet.WebApi.Test\ORT.Vet.WebApi.Test.csproj", "{D5B62008-BA8A-4EFF-8D32-92247B28BA5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,5 +51,9 @@ Global
 		{ED77E019-B8F5-4359-9DBB-3788B25B10B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED77E019-B8F5-4359-9DBB-3788B25B10B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED77E019-B8F5-4359-9DBB-3788B25B10B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5B62008-BA8A-4EFF-8D32-92247B28BA5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5B62008-BA8A-4EFF-8D32-92247B28BA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5B62008-BA8A-4EFF-8D32-92247B28BA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5B62008-BA8A-4EFF-8D32-92247B28BA5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

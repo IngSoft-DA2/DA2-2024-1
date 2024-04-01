@@ -13,7 +13,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\ORT.Vet.IBusinessLogic\ORT.Vet.IBusinessLogic.csproj" />
-        <ProjectReference Include="..\ORT.Vet.IBusinessLogic\ORT.Vet.Domain.csproj" />
         <ProjectReference Include="..\ORT.Vet.Domain\ORT.Vet.Domain.csproj" />
         <ProjectReference Include="..\ORT.Vet.ServicesFactory\ORT.Vet.ServicesFactory.csproj" />
     </ItemGroup>

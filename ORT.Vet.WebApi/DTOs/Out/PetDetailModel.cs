@@ -15,5 +15,11 @@ namespace ORT.Vet.WebApi.DTOs.Out
         public int Id { get; set; }
         public string Name { get; set; }
         public int Age { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            var otherPetDetail = obj as PetDetailModel;
+            return Id == otherPetDetail.Id;
+        }
     }
 }
