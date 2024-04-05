@@ -1,0 +1,60 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\ORT\\DA2\\DA2-2024-1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D5B62008-BA8A-4EFF-8D32-92247B28BA5F}|ORT.Vet.WebApi.Test\\ORT.Vet.WebApi.Test.csproj|d:\\ort\\da2\\da2-2024-1\\ort.vet.webapi.test\\controllers\\petcontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5B62008-BA8A-4EFF-8D32-92247B28BA5F}|ORT.Vet.WebApi.Test\\ORT.Vet.WebApi.Test.csproj|solutionrelative:ort.vet.webapi.test\\controllers\\petcontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3969B5CF-8FAE-4FAD-899F-21FA743FAAA1}|ORT.Vet.WebApi\\ORT.Vet.WebApi.csproj|d:\\ort\\da2\\da2-2024-1\\ort.vet.webapi\\controllers\\petcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3969B5CF-8FAE-4FAD-899F-21FA743FAAA1}|ORT.Vet.WebApi\\ORT.Vet.WebApi.csproj|solutionrelative:ort.vet.webapi\\controllers\\petcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 226,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PetControllerTest.cs",
+              "DocumentMoniker": "D:\\ORT\\DA2\\DA2-2024-1\\ORT.Vet.WebApi.Test\\Controllers\\PetControllerTest.cs",
+              "RelativeDocumentMoniker": "ORT.Vet.WebApi.Test\\Controllers\\PetControllerTest.cs",
+              "ToolTip": "D:\\ORT\\DA2\\DA2-2024-1\\ORT.Vet.WebApi.Test\\Controllers\\PetControllerTest.cs",
+              "RelativeToolTip": "ORT.Vet.WebApi.Test\\Controllers\\PetControllerTest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEIAAABdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-04T20:55:46.605Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 174,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PetController.cs",
+              "DocumentMoniker": "D:\\ORT\\DA2\\DA2-2024-1\\ORT.Vet.WebApi\\Controllers\\PetController.cs",
+              "RelativeDocumentMoniker": "ORT.Vet.WebApi\\Controllers\\PetController.cs",
+              "ToolTip": "D:\\ORT\\DA2\\DA2-2024-1\\ORT.Vet.WebApi\\Controllers\\PetController.cs",
+              "RelativeToolTip": "ORT.Vet.WebApi\\Controllers\\PetController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-04T20:58:25.754Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

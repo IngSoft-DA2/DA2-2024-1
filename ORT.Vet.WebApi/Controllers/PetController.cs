@@ -5,6 +5,7 @@ using ORT.Vet.Domain;
 using ORT.Vet.BusinessLogic;
 using ORT.Vet.WebApi.DTOs.In;
 using ORT.Vet.WebApi.DTOs.Out;
+using ORT.Vet.IBusinessLogic.CustomExceptions;
 
 namespace ORT.Vet.WebApi.Controllers
 {
@@ -45,9 +46,15 @@ namespace ORT.Vet.WebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult Show(int id)
         {
-            var pet = _petLogic.GetById(id);
-            if (pet != null) return Ok(new PetDetailModel(pet));
-            return NotFound(new { Message = $"No se encontro el perro con id {id}" });
+            try
+            {
+                var pet = _petLogic.GetById(id);
+                return Ok(new PetDetailModel(pet));
+            }
+            catch (NotFoundException e)
+            {
+                return NotFound(new { Message = e });
+            }
         }
 
         //localhost:5051/api/pets

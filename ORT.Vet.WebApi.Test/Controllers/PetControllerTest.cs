@@ -5,69 +5,73 @@ using ORT.Vet.WebApi.Controllers;
 using ORT.Vet.WebApi.DTOs.Out;
 using Moq;
 using ORT.Vet.WebApi.Test.Comparers;
+using System.Xml.Serialization;
+using ORT.Vet.IBusinessLogic.CustomExceptions;
 
 namespace ORT.Vet.WebApi.Test;
 
 [TestClass]
 public class PetControllerTest
 {
-    private List<Pet> _pets;
     private Mock<IBusinessLogic<Pet>> _petLogicMock;
-    
-    [TestInitialize]
-    public void Setup() 
+
+    [TestInitialize] 
+    public void Setup()
     {
         _petLogicMock = new Mock<IBusinessLogic<Pet>>(MockBehavior.Strict);
-        _pets = new List<Pet>() { new Pet() { Id = 1, Name = "Kila", Age = 2 } };
     }
-    
+
     [TestMethod]
-    public void IndexOkTest() 
+    public void IndexOkTest()
     {
         // Arrange
-        _petLogicMock.Setup(r => r.GetAll()).Returns(_pets);
-        var controller = new PetController(_petLogicMock.Object);
-    
+        List<Pet> pets = new List<Pet>() { new Pet() { Id = 1, Name = "Kila", Age = 2 } };
+        _petLogicMock.Setup(r => r.GetAll()).Returns(pets);
+        var petController = new PetController(_petLogicMock.Object);
+        var expectedContent = pets.Select(p => new PetDetailModel(p)).ToList();
+
         // Act
-        var result = controller.Index();
+        var result = petController.Index();
         var okResult = result as OkObjectResult;
-        List<PetDetailModel> petModels = okResult.Value as List<PetDetailModel>;
-        List<PetDetailModel> expectedModels = _pets.Select(p => new PetDetailModel(p)).ToList();
+        var actualContent = okResult.Value as List<PetDetailModel>;
 
         // Assert
-        _petLogicMock.VerifyAll(); // Verificar que se llamo a todos los métodos
-        CollectionAssert.AreEqual(
-            expectedModels,
-            petModels
-            );
+        _petLogicMock.VerifyAll();
+        CollectionAssert.AreEqual(expectedContent, actualContent);
     }
 
     [TestMethod]
     public void ShowOkTest()
     {
         // Arrange
-        _petLogicMock.Setup(l => l.GetById(It.IsAny<int>())).Returns(_pets.First());
+        List<Pet> pets = new List<Pet>() { new Pet() { Id = 1, Name = "Kila", Age = 2 } };
+        _petLogicMock.Setup(l => l.GetById(It.IsAny<int>())).Returns(pets.First());
         var controller = new PetController(_petLogicMock.Object);
-    
+        var expectedPetModel = new PetDetailModel(pets.First());
+
         // Act
-        var result = controller.Show(_pets.First().Id);
+        var result = controller.Show(pets.First().Id);
         var okResult = result as OkObjectResult;
         var petModel = okResult.Value as PetDetailModel;
-        PetDetailModel expectedPetModel = new PetDetailModel(_pets.First());
 
         // Assert
-        _petLogicMock.VerifyAll(); // Verificar que se llamo a todos los métodos
-        
+        _petLogicMock.VerifyAll();
         // Aca uso un equality comparer en lugar de basarme en el Equals y GetHashCode de PetDetailModel en sí
         Assert.AreEqual(expectedPetModel, petModel, new PetDetailComparer());
     }
 
-    // [TestMethod]
-    // [ExpectedException(typeof(Exception))]
-    // public void PiquesDeMocksParaTestearLasOtrasCapas()
-    // {
-    //     var exception = new Exception();
-    //     _petLogicMock.Setup(l => l.GetById(It.IsAny<int>())).Throws(exception);
-    //     
-    // }
+    [TestMethod]
+    public void ShowNotFoundTest()
+    {
+        //Arrange
+        _petLogicMock.Setup(l => l.GetById(It.IsAny<int>())).Throws(new NotFoundException());
+        var controller = new PetController(_petLogicMock.Object);
+
+        //Act
+        var result = controller.Show(1);
+
+        //Assert
+        _petLogicMock.VerifyAll();
+        Assert.IsInstanceOfType(result, typeof(NotFoundObjectResult));
+    }
 }
