@@ -13,7 +13,32 @@ namespace ORT.Vet.DataAccess
 
         public virtual DbSet<Pet>? Pets { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) { }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Relación 1-n entre Owner y Pet
+            modelBuilder.Entity<Owner>()
+                .HasMany(o => o.Pets)
+                .WithOne(p => p.Owner);
+
+            // Relación n-n entre Pet y Vet 
+            modelBuilder.Entity<Pet>()
+            .HasMany(p => p.Vets)
+            .WithMany(v => v.Pets);
+
+            // Relación n-n entre Pet y Vet a través de Appointment
+            modelBuilder.Entity<Appointment>()
+                .HasKey(a => new { a.PetId, a.VetId });
+
+            modelBuilder.Entity<Appointment>()
+                .HasOne(a => a.Pet)
+                .WithMany(p => p.Appointments)
+                .HasForeignKey(a => a.PetId);
+
+            modelBuilder.Entity<Appointment>()
+                .HasOne(a => a.Vet)
+                .WithMany(v => v.Appointments)
+                .HasForeignKey(a => a.VetId);
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
