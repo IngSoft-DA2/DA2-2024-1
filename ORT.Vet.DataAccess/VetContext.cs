@@ -38,6 +38,21 @@ namespace ORT.Vet.DataAccess
                 .HasOne(a => a.Vet)
                 .WithMany(v => v.Appointments)
                 .HasForeignKey(a => a.VetId);
+
+            // For TPH
+            // modelBuilder.Entity<Animal>()
+            //     .HasDiscriminator<string>("AnimalType")
+            //     .HasValue<Dog>("Dog")
+            //     .HasValue<Cat>("Cat");
+
+            // For TPT
+            // modelBuilder.Entity<Animal>().ToTable("Animals");
+            // modelBuilder.Entity<Cat>().ToTable("Cats");
+            // modelBuilder.Entity<Dog>().ToTable("Dogs");   
+            
+            // For TPC
+            // modelBuilder.Entity<Cat>().ToTable("Cats");
+            // modelBuilder.Entity<Dog>().ToTable("Dogs");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
