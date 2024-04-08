@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORT.Vet.IDataAccess", "ORT.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORT.Vet.WebApi.Test", "ORT.Vet.WebApi.Test\ORT.Vet.WebApi.Test.csproj", "{D5B62008-BA8A-4EFF-8D32-92247B28BA5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORT.Vet.DataAccess.Test", "ORT.Vet.DataAccess.Test\ORT.Vet.DataAccess.Test.csproj", "{032EA455-3C17-4E62-ABD4-2C10E3FD7B48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,5 +57,9 @@ Global
 		{D5B62008-BA8A-4EFF-8D32-92247B28BA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5B62008-BA8A-4EFF-8D32-92247B28BA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5B62008-BA8A-4EFF-8D32-92247B28BA5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{032EA455-3C17-4E62-ABD4-2C10E3FD7B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{032EA455-3C17-4E62-ABD4-2C10E3FD7B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{032EA455-3C17-4E62-ABD4-2C10E3FD7B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{032EA455-3C17-4E62-ABD4-2C10E3FD7B48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
