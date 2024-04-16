@@ -9,10 +9,14 @@ namespace ORT.Vet.BusinessLogic
     public class PetLogic : IBusinessLogic<Pet>
     {
         private readonly IGenericRepository<Pet> _repository;
+        // Si quiero el current user simplemente lo pido por iny de dependencia
+        // El session logic ya lo tiene cargado cuando lo pedi en el filter
+        private readonly ISessionLogic _sessionLogic;
 
-        public PetLogic(IGenericRepository<Pet> repository)
+        public PetLogic(IGenericRepository<Pet> repository, ISessionLogic sessionLogic)
         {
             _repository = repository;
+            _sessionLogic = sessionLogic;
         }
 
         public List<Pet> GetAll()
@@ -27,6 +31,10 @@ namespace ORT.Vet.BusinessLogic
 
         public Pet Create(Pet pet)
         {
+            if (pet.Owner.Name != _sessionLogic.GetCurrentUser().Name)
+            {
+                throw new ArgumentException("The owner of the pet is not the current user.");
+            }
             _repository.Insert(pet);
             _repository.Save();
             return pet;

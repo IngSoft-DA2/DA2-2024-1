@@ -12,32 +12,34 @@ namespace ORT.Vet.DataAccess
         public VetContext(DbContextOptions options) : base(options) { }
 
         public virtual DbSet<Pet>? Pets { get; set; }
+        public virtual DbSet<User>? Users { get; set; }
+        public virtual DbSet<Session>? Sessions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Relación 1-n entre Owner y Pet
-            modelBuilder.Entity<Owner>()
-                .HasMany(o => o.Pets)
-                .WithOne(p => p.Owner);
-
-            // Relación n-n entre Pet y Vet 
-            modelBuilder.Entity<Pet>()
-            .HasMany(p => p.Vets)
-            .WithMany(v => v.Pets);
-
-            // Relación n-n entre Pet y Vet a través de Appointment
-            modelBuilder.Entity<Appointment>()
-                .HasKey(a => new { a.PetId, a.VetId });
-
-            modelBuilder.Entity<Appointment>()
-                .HasOne(a => a.Pet)
-                .WithMany(p => p.Appointments)
-                .HasForeignKey(a => a.PetId);
-
-            modelBuilder.Entity<Appointment>()
-                .HasOne(a => a.Vet)
-                .WithMany(v => v.Appointments)
-                .HasForeignKey(a => a.VetId);
+            // // Relación 1-n entre Owner y Pet
+            // modelBuilder.Entity<Owner>()
+            //     .HasMany(o => o.Pets)
+            //     .WithOne(p => p.Owner);
+            //
+            // // Relación n-n entre Pet y Vet 
+            // modelBuilder.Entity<Pet>()
+            // .HasMany(p => p.Vets)
+            // .WithMany(v => v.Pets);
+            //
+            // // Relación n-n entre Pet y Vet a través de Appointment
+            // modelBuilder.Entity<Appointment>()
+            //     .HasKey(a => new { a.PetId, a.VetId });
+            //
+            // modelBuilder.Entity<Appointment>()
+            //     .HasOne(a => a.Pet)
+            //     .WithMany(p => p.Appointments)
+            //     .HasForeignKey(a => a.PetId);
+            //
+            // modelBuilder.Entity<Appointment>()
+            //     .HasOne(a => a.Vet)
+            //     .WithMany(v => v.Appointments)
+            //     .HasForeignKey(a => a.VetId);
 
             // For TPH
             // modelBuilder.Entity<Animal>()

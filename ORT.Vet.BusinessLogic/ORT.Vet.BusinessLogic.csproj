@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\ORT.Vet.DataAccess\ORT.Vet.DataAccess.csproj" />
     <ProjectReference Include="..\ORT.Vet.IBusinessLogic\ORT.Vet.IBusinessLogic.csproj" />
     <ProjectReference Include="..\ORT.Vet.Domain\ORT.Vet.Domain.csproj" />
     <ProjectReference Include="..\ORT.Vet.IDataAccess\ORT.Vet.IDataAccess.csproj" />

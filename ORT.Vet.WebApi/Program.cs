@@ -1,5 +1,6 @@
 using ORT.Vet.Domain;
 using ORT.Vet.ServicesFactory;
+using ORT.Vet.WebApi.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 // Agrego esta linea
-builder.Services.AddControllers();
-//
+// Aca registro el exception filter también (APLICA GLOBALMENTE)
+builder.Services.AddControllers(
+    options => options.Filters.Add(typeof(ExceptionFilter))
+    );
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

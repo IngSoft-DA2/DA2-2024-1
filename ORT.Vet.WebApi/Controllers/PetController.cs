@@ -6,6 +6,7 @@ using ORT.Vet.BusinessLogic;
 using ORT.Vet.WebApi.DTOs.In;
 using ORT.Vet.WebApi.DTOs.Out;
 using ORT.Vet.IBusinessLogic.CustomExceptions;
+using ORT.Vet.WebApi.Filters;
 
 namespace ORT.Vet.WebApi.Controllers
 {
@@ -46,19 +47,13 @@ namespace ORT.Vet.WebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult Show(int id)
         {
-            try
-            {
-                var pet = _petLogic.GetById(id);
-                return Ok(new PetDetailModel(pet));
-            }
-            catch (NotFoundException e)
-            {
-                return NotFound(new { Message = e });
-            }
+            var pet = _petLogic.GetById(id);
+            return Ok(new PetDetailModel(pet));
         }
 
         //localhost:5051/api/pets
         [HttpPost]
+        [AuthenticationFilter]
         public IActionResult Create([FromBody] PetCreateModel newPet)
         {
 

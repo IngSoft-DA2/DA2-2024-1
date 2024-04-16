@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ORT.Vet.Domain\ORT.Vet.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
