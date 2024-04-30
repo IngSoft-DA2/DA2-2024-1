@@ -17,6 +17,8 @@ public class ServicesFactory
 
         // Si manejo estado, uso addScoped
         serviceCollection.AddScoped<ISessionLogic, SessionLogic>();
+
+        serviceCollection.AddTransient<IImporterLogic, ImporterLogic>();
     }
     public static void RegisterDataAccess(IServiceCollection serviceCollection){
         serviceCollection.AddDbContext<DbContext, VetContext>();

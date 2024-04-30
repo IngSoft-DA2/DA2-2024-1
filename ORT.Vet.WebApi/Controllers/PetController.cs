@@ -42,7 +42,7 @@ namespace ORT.Vet.WebApi.Controllers
             var retrievedPets = _petLogic.GetAll();
             return Ok(retrievedPets.Select(p => new PetDetailModel(p)).ToList());
         }
-
+        
         //localhost:5051/api/pets/{id}
         [HttpGet("{id}")]
         public IActionResult Show(int id)
@@ -50,22 +50,22 @@ namespace ORT.Vet.WebApi.Controllers
             var pet = _petLogic.GetById(id);
             return Ok(new PetDetailModel(pet));
         }
-
+        
         //localhost:5051/api/pets
         [HttpPost]
         [AuthenticationFilter]
         public IActionResult Create([FromBody] PetCreateModel newPet)
         {
-
+        
             if (String.IsNullOrEmpty(newPet.Name))
             {
                 return BadRequest(new { Message = "Falta el nombre :(" });
             }
-
+        
             var createdPet = _petLogic.Create(newPet.ToEntity());
             return Ok(new PetDetailModel(createdPet));
         }
-
+        
         
         // localhost:5051/api/pets/{id}
         [HttpPut("{id}")]
@@ -75,7 +75,7 @@ namespace ORT.Vet.WebApi.Controllers
             if (pet == null) return NotFound(new { Message = "No encontre el perro" });
             return Ok(new PetDetailModel(pet));
         }
-
+        
         // localhost:5051/api/pets/{id}
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

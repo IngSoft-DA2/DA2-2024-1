@@ -17,4 +17,8 @@
         <ProjectReference Include="..\ORT.Vet.ServicesFactory\ORT.Vet.ServicesFactory.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Importers\" />
+    </ItemGroup>
+
 </Project>
