@@ -13,11 +13,22 @@ builder.Services.AddControllers(
     options => options.Filters.Add(typeof(ExceptionFilter))
     );
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-ServicesFactory.RegisterServices(builder.Services);
 ServicesFactory.RegisterDataAccess(builder.Services);
+ServicesFactory.RegisterServices(builder.Services);
 
 var app = builder.Build();
 
@@ -29,6 +40,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAllOrigins");
 
 // Agrego esta linea
 app.MapControllers();

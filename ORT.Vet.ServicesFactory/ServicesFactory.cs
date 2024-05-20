@@ -15,6 +15,8 @@ public class ServicesFactory
     public static void RegisterServices(IServiceCollection serviceCollection){
         serviceCollection.AddTransient<IBusinessLogic<Pet>, PetLogic>();
 
+        serviceCollection.AddTransient<IUserService, UserService>();
+
         // Si manejo estado, uso addScoped
         serviceCollection.AddScoped<ISessionLogic, SessionLogic>();
 
@@ -23,6 +25,6 @@ public class ServicesFactory
     public static void RegisterDataAccess(IServiceCollection serviceCollection){
         serviceCollection.AddDbContext<DbContext, VetContext>();
         serviceCollection.AddTransient<IGenericRepository<Pet>, PetRepository>();
-        serviceCollection.AddTransient<IUserRepository, UserRepository>();
+        serviceCollection.AddScoped<IUserRepository, UserRepository>();
     }
 }

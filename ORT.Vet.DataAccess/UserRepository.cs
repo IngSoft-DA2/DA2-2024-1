@@ -16,4 +16,15 @@ public class UserRepository : GenericRepository<User>, IUserRepository
         var session = Context.Set<Session>().FirstOrDefault(s => s.Token == token);
         return session?.User;
     }
+
+    public User? FindByName(string name)
+    {
+        return Context.Set<User>().FirstOrDefault(u => u.Name == name);
+    }
+
+    public void AddSession(Session session)
+    {
+        Context.Set<Session>().Add(session);
+        Context.SaveChanges();
+    }
 }
