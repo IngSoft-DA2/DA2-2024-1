@@ -13,5 +13,9 @@ export enum PetEndpoints {
     GET_BY_ID = 'api/pets/%s'
     format(PetEndpoints.GET_BY_ID, '1') -> api/pets/1
     La otra forma de hacerlo es: `${PetEndpoints.GET_BY_ID}1`
-*/
+  */
+}
+
+export enum ImporterEndpoints {
+  GET_ALL = '/api/importers',
 }

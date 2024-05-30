@@ -16,18 +16,21 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    // Obtener el token del session storage / local storage
     const token = this._sessionStorageService.getToken();
+
     let newRequest = request;
-    console.log('request', request);
+
+    // Si estoy pegandole al endpoint login, no hago nada
     if (request.url.includes('login')) {
       return next.handle(request);
     }
 
     if (!!token) {
-      // const headers = request.headers.set('Authorization', `Bearer ${token}`);
       const headers = request.headers.set('Authorization', token);
       newRequest = request.clone({ headers });
     }
+
     return next.handle(newRequest);
   }
 }

@@ -22,9 +22,10 @@ export class AuthService implements IAuthService {
     // axios -> post/put/get/delete
     // En angular tenemos el HttpClient
     // post a http://localhost:5051/api/session con body { name y password }
+
     const body = serializeLoginBody(name, password);
+    
     return this._httpClient.post<LoginReturnModel>(
-      // http://localhost:5051/api/sessions
       SessionEndpoints.LOGIN,
       { name, password }
     );

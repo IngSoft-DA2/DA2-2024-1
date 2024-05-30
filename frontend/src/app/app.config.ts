@@ -5,9 +5,10 @@ import { TestService } from './test.service';
 import { AuthService } from './services/auth.service';
 import { SessionStorageService } from './services/session-storage.service';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
-import { UnServicioService } from './un-servicio.service';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { APIInterceptor } from './interceptors/apiInterceptor';
+import { ImportersService } from './services/importers.service';
+import { AuthGuard } from './guards/auth.guard';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,17 +16,18 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     TestService,
     AuthService,
-    UnServicioService,
+    ImportersService,
+    AuthGuard,
     SessionStorageService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: APIInterceptor,
-      multi: true,
+      useClass: AuthInterceptor,
+      multi: true
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
+      useClass: APIInterceptor,
+      multi: true
     },
   ],
 };
